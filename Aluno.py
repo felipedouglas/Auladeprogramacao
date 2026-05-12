@@ -18,6 +18,17 @@ class Aluno(Pessoa):
 
         return ", ".join(disciplina.nome for disciplina in self.disciplinas)
 
+    def remover_dados(self):
+        for disciplina in self.disciplinas:
+            if self in disciplina.alunos:
+                disciplina.alunos.remove(self)
+
+        self.nome = ""
+        self.cpf = ""
+        self.matricula = ""
+        self.curso = ""
+        self.disciplinas.clear()
+
     def __str__(self):
         return (
             f"Aluno: {self.nome} | CPF: {self.cpf} | "

@@ -23,6 +23,17 @@
   <div class="panel">
     <div class="panel-header">
       <h2>Alunos cadastrados</h2>
+      <form class="search-form" method="get">
+        <input
+          name="pesquisa"
+          placeholder="Pesquisar por nome"
+          value="{{ pesquisa }}"
+        >
+        <button type="submit">Pesquisar</button>
+        {% if pesquisa %}
+          <a class="ghost-link" href="{{ url_for('alunos') }}">Limpar</a>
+        {% endif %}
+      </form>
     </div>
     <div class="table-wrap">
       <table>

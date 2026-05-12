@@ -160,6 +160,10 @@ Metodos:
   Retorna uma string com o nome das disciplinas do aluno. Se o aluno nao tiver
   disciplinas, retorna a mensagem "Nenhuma disciplina matriculada.".
 
+- remover_dados(self)
+  Remove os dados do aluno, desfazendo seus vinculos com disciplinas e limpando
+  nome, CPF, matricula, curso e lista de disciplinas.
+
 - __str__(self)
   Retorna uma representacao textual do aluno, exibindo nome, CPF, matricula e
   curso.
@@ -311,6 +315,11 @@ Metodos:
 - buscar_aluno_por_matricula(self, matricula)
   Procura um aluno pela matricula. Se encontrar, retorna o objeto Aluno. Se nao
   encontrar, retorna None.
+
+- pesquisar_alunos_por_nome(self, nome)
+  Procura alunos pelo nome ou por parte do nome. A pesquisa ignora diferencas
+  entre letras maiusculas e minusculas. Se o campo estiver vazio, retorna todos
+  os alunos cadastrados.
 
 - buscar_professor_por_registro(self, registro)
   Procura um professor pelo registro. Se encontrar, retorna o objeto Professor.

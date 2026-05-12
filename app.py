@@ -141,6 +141,13 @@ def alunos():
             flash("Ja existe aluno com este CPF ou matricula.", "warning")
         return redirect(url_for("alunos"))
 
+    pesquisa = request.args.get("pesquisa", "").strip()
+    filtro_nome = ""
+    params = ()
+    if pesquisa:
+        filtro_nome = "WHERE LOWER(a.nome) LIKE LOWER(%s)"
+        params = (f"%{pesquisa}%",)
+
     group_concat = "GROUP_CONCAT(d.nome, ', ')" if is_sqlite() else "GROUP_CONCAT(d.nome ORDER BY d.nome SEPARATOR ', ')"
     lista = fetch_all(
         f"""
@@ -149,11 +156,13 @@ def alunos():
           FROM alunos a
           LEFT JOIN matriculas m ON m.aluno_id = a.id AND m.ativo = 1
           LEFT JOIN disciplinas d ON d.id = m.disciplina_id
+         {filtro_nome}
          GROUP BY a.id
          ORDER BY a.nome
-        """
+        """,
+        params,
     )
-    return render_template("alunos.html", alunos=lista)
+    return render_template("alunos.html", alunos=lista, pesquisa=pesquisa)
 
 
 @app.route("/alunos/<int:aluno_id>/editar", methods=["GET", "POST"])

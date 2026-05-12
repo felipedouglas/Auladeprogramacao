@@ -25,6 +25,13 @@ class SistemaAcademico:
                 return aluno
         return None
 
+    def pesquisar_alunos_por_nome(self, nome):
+        termo = nome.strip().lower()
+        if not termo:
+            return self.alunos
+
+        return [aluno for aluno in self.alunos if termo in aluno.nome.lower()]
+
     def buscar_professor_por_registro(self, registro):
         for professor in self.professores:
             if professor.registro == registro:

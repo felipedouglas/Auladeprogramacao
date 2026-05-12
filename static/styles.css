@@ -5,7 +5,7 @@
   --muted: #6b7280;
   --line: #d9e0ea;
   --primary: #1769aa;
-  --primary-dark: #0f4f82;
+  --primary-dark: #eaab0c;
   --success: #0f766e;
   --warning: #9a5b00;
 }
@@ -169,6 +169,17 @@ h2 {
   justify-content: space-between;
   gap: 12px;
   margin-bottom: 16px;
+}
+
+.search-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.search-form input {
+  width: min(260px, 100%);
 }
 
 .grid {
